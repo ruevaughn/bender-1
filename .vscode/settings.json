@@ -1,4 +1,6 @@
 {
   "ruby.format": "rubocop",
-  "ruby.intellisense": "rubyLocate"
+  "ruby.intellisense": "rubyLocate",
+  "editor.useTabStops": false,
+  "files.trimTrailingWhitespace": true
 }

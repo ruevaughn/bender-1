@@ -1,8 +1,14 @@
 module Map
-  OBSTACLES = {'I' => 'INVERTER', '@' => 'Bender', '$' => "SUICIDE_BOOTH", '#' => 'OBSTACLE', 'X' => 'OBSTACLE'}
-    , #, X, @, $, B, I, T ].freeze
-  DIRECTION_PRIORITY = {'S' => 'SOUTH', 'E' => 'EAST', 'N' => 'North', 'W' => 'West'}
-  DIRECTION_INVERTED_PRIORITY = {'W' => 'West', 'S' => 'SOUTH', 'E' => 'EAST', 'N' => 'North', }
+  OBSTACLES = {
+    'I' => 'INVERTER',
+    '@' => 'Bender',
+    '$' => 'SUICIDE_BOOTH',
+    '#' => 'OBSTACLE',
+    'X' => 'OBSTACLE',
+    'T' => 'Teleporter'
+  }.freeze
+
+
   def generate
     get_size
 
@@ -26,11 +32,24 @@ module Journey
 end
 
 class Bender
-  attr_accessor :direction_facing
-  attr_accessor :obstacles
-  
-  def init(*args)
+  DIRECTION_PRIORITY = 
+    'S' => 'SOUTH',
+    'E' => 'EAST',
+    'N' => 'North',
+    'W' => 'WEST'
+  }.freeze
 
+  DIRECTION_INVERTED_PRIORITY = {
+    'W' => 'WEST',
+    'S' => 'SOUTH',
+    'E' => 'EAST',
+    'N' => 'NORTH'
+    }.freeze
+
+  attr_accessor :direction_facing
+
+  def init(*args)
+    @direction_facing = Bender::DIRECTION_PRIORITY[:south]
   end
 
   def take_step
