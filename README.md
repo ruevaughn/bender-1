@@ -1,4 +1,4 @@
-# CodinGame Trainging - Bender 1
+# [CodinGame Trainging - Bender 1](https://www.codingame.com/training/medium/bender-episode-1)
 
 ## WHAT WILL I LEARN
 
@@ -23,3 +23,19 @@ The goal of the puzzle is to help Bender the robot to go through the city. You h
 #### Story
 
 Bender, depressed since its artificial intelligence has been diminished, roams on the streets to find the nearest suicide booth. In order to save the robot, you are entrusted with the task of forecasting the path Bender will take, so we can intercept him. You will have at your disposal the logics of the robot's displacements. What are you still doing here ? Run to Bender's rescue !
+
+#### Rules
+
+
+
+#### Reasonings / Helpful Things for me
+
+* [Matrices - The forgotten Ruby Library](http://rubylearning.com/blog/2013/04/04/ruby-matrix-the-forgotten-library/)
+* [Rdoc  2.5.1+](https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html)
+
+##### More
+
+
+* [Bender Episode 2](https://www.codingame.com/training/hard/bender-episode-2)
+
+* [Bender Episode 3](https://www.codingame.com/training/hard/bender-episode-3)
