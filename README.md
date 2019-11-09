@@ -24,14 +24,11 @@ The goal of the puzzle is to help Bender the robot to go through the city. You h
 
 Bender, depressed since its artificial intelligence has been diminished, roams on the streets to find the nearest suicide booth. In order to save the robot, you are entrusted with the task of forecasting the path Bender will take, so we can intercept him. You will have at your disposal the logics of the robot's displacements. What are you still doing here ? Run to Bender's rescue !
 
-#### Rules
-
-
-
 #### Reasonings / Helpful Things for me
 
 * [Matrices - The forgotten Ruby Library](http://rubylearning.com/blog/2013/04/04/ruby-matrix-the-forgotten-library/)
 * [Rdoc  2.5.1+](https://ruby-doc.org/stdlib-2.5.1/libdoc/matrix/rdoc/Matrix.html)
+* [So Many Ways to Modularize.... sigh](https://medium.com/@leo_hetsch/ruby-modules-include-vs-prepend-vs-extend-f09837a5b073)
 
 ##### More
 
