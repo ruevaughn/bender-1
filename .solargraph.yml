@@ -11,4 +11,4 @@ reporters:
 - rubocop
 - require_not_found
 -
-max_files: 500o
+max_files: 500
