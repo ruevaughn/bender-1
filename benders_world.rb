@@ -8,14 +8,15 @@ class Map
     inverter: 'I',
     obstacle: 'X',
     suicide_booth: '$',
-    teleporter: 'T'
+    teleporter: 'T',
+    open_space: '\w'
   }.freeze
 
   attr_accessor :rows
   attr_accessor :columns
   attr_accessor :map
 
-  def initialize(*attrs)
+  def initialize (*attrs)
     @map = []
     @bender_placed = false
     @suicide_booth_placed = false
@@ -28,6 +29,15 @@ class Map
     draw_map
   end
 
+  def display_current_map
+    @map.each do |rows|
+      puts rows
+      rows.each do |column|
+      end
+    end
+
+  end
+
   def prompt_map_size
     puts 'How Many Lines(rows) (4-100)'
     @rows = gets.chomp.to_i
@@ -36,35 +46,35 @@ class Map
     check_valid_input
   end
 
-  def draw_rows
-    @rows.times do |row_count|
-      draw_row(row_count)
-    end
-  end
-
-  def draw_row(row_count)
-    current_row = []
-    current_column = @columns.times do |column_count|
-      get_row_column_object(current_row, column_count)
-    end
-    current_row << current_column
-  end
-
-  def get_row_column_object(current_row, column_count)
-    if column_count.zero?
-      current_row << Map::OBJECTS[:boundary]
-    elsif column_count == @columns.size
-      current_row << Map::OBJECTS[:boundary]
-    else
-      current_row << Map::OBJECTS[:random_object]
-    end
-  end
-
   def draw_map
-    horizontal_boundary
-    current_row = draw_rows
-    @map << current_row
-    horizontal_boundary
+    @rows.times do |i|
+      if i.zero?
+        current_row = horizontal_boundary
+      elsif i == total_rows
+        current_row = horizontal_boundary
+      else
+        current_row = draw_row(i)
+      end
+      @map << current_row
+    end
+  end
+
+  def draw_row(row_index)
+    row = []
+    @columns.times do |j|
+      row << column_object(row, j)
+    end
+    row
+  end
+
+  def column_object(row, column_index)
+    if column_index.zero?
+      row << Map::OBJECTS[:boundary]
+    elsif column_index == total_columns
+      row << Map::OBJECTS[:boundary]
+    else
+      row << Map::OBJECTS[:random_object]
+    end
   end
 
   private
@@ -74,11 +84,29 @@ class Map
   end
 
   def check_valid_input
-    unless (@rows >= 4 && @rows <= 100 && @columns >= 4 && columns <= 100)
+    if  @rows <= 4 || @rows >= 100
+      puts "Rows cannot be less than 4 or greater than 10."
+    elsif @columns <= 4 || @colmns >= 100)
+      && @columns >= 4 && columns <= 100)
       puts 'Please Try Again'
       generate_map_size
     end
+  end
 
+  def first_column_index
+    @columns.first
+  end
+
+  def last_column_index
+    @columns.last
+  end
+
+  def first_row_index
+    @rows.first
+  end
+
+  def last_row_index
+    @rows.last
   end
 
   def self.random_object
@@ -89,9 +117,31 @@ class Map
     available << Map::OBJECTS[:obstacle]
   end
 
+  # def handle_column(block)
+  #   @columns.each do
+  #     yield block
+  #   end
+  # end
+
+  def total_columns
+    @columns - 1
+  end
+
+  def total_rows
+    @rows - 1
+  end
+
   def horizontal_boundary
     row = []
-    @columns.times { row << Map::OBJECTS[:boundary] }
+    @columns.times do |column_index|
+      if column_index.zero?
+        row << Map::OBJECTS[:boundary]
+      elsif column_index == @columns - 1
+        row << Map::OBJECTS[:boundary]
+      else
+       row << Map::OBJECTS[:open_space]
+      end
+    end
     @map << row
   end
 end
@@ -108,8 +158,8 @@ class Bender
 
   def next_step
   end
-end
 
+end
 map = Map.new
 map.generate_map
 puts map.map
