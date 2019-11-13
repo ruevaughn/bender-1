@@ -1,0 +1,118 @@
+require: rubocop-performance
+require:
+  - rubocop-other-extension
+  - rubocop-performance
+
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.7.0
+
+# --------------------------------------------------------- Bundler Cops ---------------------------------------------------------
+
+# Prevents you from accidentally adding same gem to the `Gemfile` twice:
+Bundler/DuplicatedGem:
+  Enabled: true
+
+# --------------------------------------------------------- Layout Cops ---------------------------------------------------------
+Layout/BlockAlignment:
+  Enabled: true
+
+Layout/ConditionPosition:
+  Description: Checks for condition placed in a confusing position relative to the keyword.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#same-line-condition'
+  Enabled: true
+
+Layout/DefEndAlignment:
+  Description: "Makes sure def/ends line up"
+  Enabled: true
+
+Layout/SpaceAfterMethodName:
+  Description: 'Good: def foo(arg)     Bad: def foo (arg)'
+  Enabled: true
+
+Layout/Tab:
+  Enabled: true
+
+Layout/TrailingBlankLines:
+  Enabled: true
+  EnforcedStyle: final_newline
+
+Layout/TrailingWhitespace:
+  Enabled: true
+
+
+# --------------------------------------------------------- Lint Cops -----------------------------------------------------------
+
+# Prevent circular argument craziness:
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Lint/CircularArgumentReference
+Lint/CircularArgumentReference:
+  Enabled: true
+
+Lint/Debugger:
+  Description: 'Check for `debugger` or `binding.pry` statements left in.'
+  Enabled: true
+
+Lint/DeprecatedClassMethods:
+  Description: 'Check for deprecated class method calls.'
+  Enabled: true
+
+Lint/DuplicatedKey:
+  Description: 'Check for duplicate keys in hash literals.'
+  Enabled: true
+
+Lint/DuplicateMethods:
+  Description: 'Check for duplicate method definitions.'
+  Enabled: true
+
+Lint/EachWithObjectArgument:
+  Description: 'Check for immutable argument given to each_with_object.'
+  Enabled: true
+
+Lint/ElseLayout:
+  Description: 'Check for odd code arrangement in an else block.'
+  Enabled: true
+
+Lint/EmptyEnsure:
+  Description: 'Checks for empty ensure block.'
+  Enabled: true
+
+Lint/EmptyInterpolation:
+  Description: 'Checks for empty string interpolation. IE; puts "hi #{}"'
+  Enabled: true
+
+Lint/EndInMethod:
+  Description: 'END blocks should not be placed inside method definitions.'
+  Enabled: true
+
+Lint/EnsureReturn:
+  Description: 'Do not use return in an ensure block.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-return-ensure'
+  Enabled: true
+
+Lint/FloatOutOfRange:
+  Description: Catches floating-point literals too large or small for Ruby to represent.
+  Enabled: true
+
+# ---- Security ---------------------------------------------
+Security/Eval:
+  Description: 'eval is crazy risky mmmkay'
+  Enabled: true
+# ------------------------------------ /Security --------------------------------------------
+
+
+# ------------------------------------ Style --------------------------------------------
+Style/DefWithParentheses:
+  Enabled: true
+
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: true
+
+Style/MethodDefParentheses:
+  Enabled: true
+
+Style/StructInheritance:
+  Description: 'Checks for inheritance from Struct.new.'
+  StyleGuide: '#no-extend-struct-new'
+  Enabled: true
+  VersionAdded: 0.29
