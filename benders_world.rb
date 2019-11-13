@@ -11,7 +11,7 @@ class Map
     teleporter: 'T'
   }.freeze
 
-  attr_accessor :lines
+  attr_accessor :rows
   attr_accessor :columns
   attr_accessor :map
 
@@ -29,35 +29,34 @@ class Map
   end
 
   def prompt_map_size
-    puts 'How Many Lines (4-100)'
-    @lines = gets.chomp.to_i
+    puts 'How Many Lines(rows) (4-100)'
+    @rows = gets.chomp.to_i
     puts 'How Many Columns (4-100)'
     @columns = gets.chomp.to_i
     check_valid_input
   end
 
   def draw_rows
-    @lines.times do |row|
-      draw_row(row)
+    @rows.times do |row_count|
+      draw_row(row_count)
     end
   end
 
-  def draw_row(row)
-    @columns.times do |column|
-      row_column_object = get_row_column_object(row, column)
-      row << line_column_object
+  def draw_row(row_count)
+    current_row = []
+    current_column = @columns.times do |column_count|
+      get_row_column_object(current_row, column_count)
     end
-    row
+    current_row << current_column
   end
 
-  def get_row_column_object(row, column)
-    if column.zero?
-      binding.pry
-      row << Map::OBJECTS[:boundary]
-    elsif column == @columns.length
-      row << Map::OBJECTS[:boundary]
+  def get_row_column_object(current_row, column_count)
+    if column_count.zero?
+      current_row << Map::OBJECTS[:boundary]
+    elsif column_count == @columns.size
+      current_row << Map::OBJECTS[:boundary]
     else
-      row << Map::OBJECTS[random_object]
+      current_row << Map::OBJECTS[:random_object]
     end
   end
 
@@ -75,7 +74,7 @@ class Map
   end
 
   def check_valid_input
-    unless (@lines >= 4 && @lines <= 100 && @columns >= 4 && columns <= 100)
+    unless (@rows >= 4 && @rows <= 100 && @columns >= 4 && columns <= 100)
       puts 'Please Try Again'
       generate_map_size
     end
